@@ -1,6 +1,6 @@
 # 🌟 Portafolio Personal de Jhairo
 
-¡Bienvenido a tu sitio web y portafolio personal! Este proyecto fue diseñado y estructurado especialmente para ti, enfocado en dar a conocer tu historia de vida, tus valores, tus habilidades, tus momentos favoritos y tus metas futuras.
+¡Bienvenido a mi sitio web y portafolio personal! Este proyecto fue diseñado y estructurado especialmente para ti, enfocado en dar a conocer tu historia de vida, tus valores, tus habilidades, tus momentos favoritos y tus metas futuras.
 
 ---
 
