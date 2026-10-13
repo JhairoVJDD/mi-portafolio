@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portafolio personal de Jhairo Ventocilla - Conoce mi vida, mis proyectos de ingeniería de sistemas, habilidades, historia y pasiones.">
+  <meta name="author" content="Jhairo Ventocilla">
+  <meta property="og:title" content="Jhairo Ventocilla | Portafolio Personal & Mi Historia">
+  <meta property="og:description" content="Bienvenido a mi espacio personal. Descubre mi trayectoria, pasiones y metas.">
+  <meta property="og:type" content="website">
+  <title>Jhairo Ventocilla | Mi Vida, Pasión y Portafolio Personal</title>
+
+  <!-- Google Fonts: Space Grotesk & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Canvas para partículas de fondo sutiles -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- Luces ambientales (Glow Orbs) -->
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+  <div class="ambient-glow glow-3"></div>
+
+  <!-- Barra de Navegación -->
+  <header class="navbar-header" id="navbar">
+    <nav class="nav-container">
+      <a href="#hero" class="nav-brand">
+        <span class="brand-text">JHAIRO</span>
+        <span class="brand-dot"></span>
+      </a>
+
+      <div class="nav-menu" id="nav-menu">
+        <ul class="nav-list">
+          <li class="nav-item"><a href="#hero" class="nav-link active"><i class="fa-solid fa-house"></i> Inicio</a></li>
+          <li class="nav-item"><a href="#sobre-mi" class="nav-link"><i class="fa-solid fa-user"></i> Sobre Mí</a></li>
+          <li class="nav-item"><a href="#mi-historia" class="nav-link"><i class="fa-solid fa-route"></i> Mi Historia</a></li>
+          <li class="nav-item"><a href="#habilidades" class="nav-link"><i class="fa-solid fa-bolt"></i> Pasiones</a></li>
+          <li class="nav-item"><a href="#galeria" class="nav-link"><i class="fa-solid fa-images"></i> Momentos</a></li>
+          <li class="nav-item"><a href="#contacto" class="nav-link"><i class="fa-solid fa-paper-plane"></i> Contacto</a></li>
+        </ul>
+      </div>
+
+      <div class="nav-actions">
+        <!-- Alternador Modo Oscuro / Claro -->
+        <button id="theme-toggle" class="btn-icon" aria-label="Cambiar tema de color" title="Alternar Modo Oscuro / Claro">
+          <i class="fa-solid fa-sun icon-sun"></i>
+          <i class="fa-solid fa-moon icon-moon"></i>
+        </button>
+
+        <!-- Botón CTA Rápido -->
+        <a href="#contacto" class="btn btn-sm btn-primary d-none-mobile">¡Hablemos!</a>
+
+        <!-- Botón Hamburguesa Móvil -->
+        <button id="menu-toggle" class="btn-icon burger-btn" aria-label="Abrir menú" aria-expanded="false">
+          <span class="burger-bar"></span>
+          <span class="burger-bar"></span>
+          <span class="burger-bar"></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section class="hero-section" id="hero">
+      <div class="container hero-grid">
+        <div class="hero-content" data-reveal="fade-up">
+          <div class="badge-pill">
+            <span class="badge-dot"></span>
+            <span>Espacio Personal & Perfil de Vida</span>
+          </div>
+          
+          <h1 class="hero-title">
+            Hola, soy <span class="gradient-text">Jhairo Ventocilla</span>
+          </h1>
+          
+          <div class="hero-subtitle-wrapper">
+            <span class="typing-prefix">Me apasiona </span>
+            <span id="typing-text" class="typing-text"></span>
+            <span class="cursor-blink">|</span>
+          </div>
+
+          <p class="hero-description">
+            Bienvenido a mi espacio personal. Aquí comparto quién soy, mi recorrido en la 
+            <strong>Ingeniería de Sistemas</strong>, las pasiones que me impulsan día a día 
+            y los proyectos y metas que construyo con disciplina y dedicación.
+          </p>
+
+          <div class="hero-cta-group">
+            <a href="#sobre-mi" class="btn btn-primary">
+              <span>Conoce Mi Historia</span>
+              <i class="fa-solid fa-arrow-down"></i>
+            </a>
+            <a href="#contacto" class="btn btn-glass">
+              <span>Escríbeme</span>
+              <i class="fa-solid fa-envelope"></i>
+            </a>
+          </div>
+
+          <!-- Métricas y Valores Personales -->
+          <div class="hero-stats-row">
+            <div class="stat-card">
+              <span class="stat-number">100%</span>
+              <span class="stat-label">Compromiso y Pasión</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number">∞</span>
+              <span class="stat-label">Deseo de Superación</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number">+Innovación</span>
+              <span class="stat-label">Tecnología & Propósito</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual" data-reveal="fade-left">
+          <div class="photo-card-wrapper">
+            <div class="photo-glow"></div>
+            <div class="photo-card">
+              <img src="assets/images/profile.jpg" alt="Foto de perfil de Jhairo" class="profile-img" id="profile-img">
+              <div class="photo-overlay-tag">
+                <i class="fa-solid fa-sparkles"></i>
+                <span>En constante evolución profesional</span>
+              </div>
+            </div>
+
+            <!-- Chips Flotantes Decorativos -->
+            <div class="floating-chip chip-top-left">
+              <i class="fa-solid fa-code text-cyan"></i>
+              <span>Ing. de Sistemas</span>
+            </div>
+
+            <div class="floating-chip chip-bottom-right">
+              <i class="fa-solid fa-compass text-pink"></i>
+              <span>Explorando Nuevos Rumbos</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOBRE MÍ SECTION -->
+    <section class="section about-section" id="sobre-mi">
+      <div class="container">
+        <div class="section-header text-center" data-reveal="fade-up">
+          <span class="section-tag">Conóceme</span>
+          <h2 class="section-title">¿Quién está detrás de <span class="gradient-text">Jhairo</span>?</h2>
+          <p class="section-subtitle">
+            Más allá de una carrera profesional, soy alguien motivado por la perseverancia, la curiosidad y las ganas de crear valor real.
+          </p>
+        </div>
+
+        <div class="about-grid">
+          <!-- Tarjeta Biografía Principal -->
+          <div class="about-card main-bio glass-panel" data-reveal="fade-right">
+            <div>
+              <div class="card-icon-header">
+                <div class="icon-circle">
+                  <i class="fa-solid fa-fingerprint"></i>
+                </div>
+                <h3 class="card-title">Mi Esencia y Filosofía</h3>
+              </div>
+              <p class="bio-text">
+                Mi nombre es <strong>Jhairo Juan de Dios Ventocilla</strong>. Desde que elegí el camino de la 
+                tecnología y la Ingeniería de Sistemas, entendí que cada reto complejo es una oportunidad 
+                para aprender, perfeccionar habilidades y forjar disciplina.
+              </p>
+              <p class="bio-text">
+                Me caracterizo por ser una persona proactiva, solidaria y orientada a los resultados. Disfruto 
+                tanto de la lógica profunda del desarrollo de sistemas como del trabajo en equipo, 
+                siempre buscando que cada proyecto tenga un impacto positivo en las personas.
+              </p>
+            </div>
+
+            <div class="quote-box">
+              <i class="fa-solid fa-quote-left quote-icon"></i>
+              <blockquote id="daily-quote">
+                "El éxito es la suma de pequeños esfuerzos repetidos día tras día."
+              </blockquote>
+              <button id="btn-next-quote" class="btn-text" title="Cambiar frase inspiradora">
+                <i class="fa-solid fa-shuffle"></i> Otra frase inspiradora
+              </button>
+            </div>
+          </div>
+
+          <!-- Pilares y Valores -->
+          <div class="about-pillars-grid" data-reveal="fade-left">
+            <div class="pillar-card glass-panel">
+              <div class="pillar-icon bg-gradient-1">
+                <i class="fa-solid fa-brain"></i>
+              </div>
+              <h4>Pensamiento Analítico</h4>
+              <p>Capacidad para entender requerimientos, estructurar lógica sólida y resolver problemas de fondo.</p>
+            </div>
+
+            <div class="pillar-card glass-panel">
+              <div class="pillar-icon bg-gradient-2">
+                <i class="fa-solid fa-heart"></i>
+              </div>
+              <h4>Valores y Ética</h4>
+              <p>Honestidad, lealtad y compromiso absoluto con la palabra dada y la excelencia en cada entrega.</p>
+            </div>
+
+            <div class="pillar-card glass-panel">
+              <div class="pillar-icon bg-gradient-3">
+                <i class="fa-solid fa-seedling"></i>
+              </div>
+              <h4>Crecimiento Continuo</h4>
+              <p>Siempre dispuesto a sumar nuevas tecnologías, certificaciones y hábitos que eleven mi nivel.</p>
+            </div>
+
+            <div class="pillar-card glass-panel">
+              <div class="pillar-icon bg-gradient-4">
+                <i class="fa-solid fa-fire-flame-curved"></i>
+              </div>
+              <h4>Pasión en Acción</h4>
+              <p>Entusiasmo genuino por materializar ideas en herramientas útiles y soluciones eficientes.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MI HISTORIA / TIMELINE SECTION -->
+    <section class="section timeline-section" id="mi-historia">
+      <div class="container">
+        <div class="section-header text-center" data-reveal="fade-up">
+          <span class="section-tag">Trayectoria</span>
+          <h2 class="section-title">El Camino de <span class="gradient-text">Mi Vida</span></h2>
+          <p class="section-subtitle">
+            Cada etapa de mi vida ha sido un pilar para moldear mi carácter, descubrir mi vocación y orientar mis pasos.
+          </p>
+        </div>
+
+        <div class="timeline-container">
+          <div class="timeline-line"></div>
+
+          <!-- Hito 1 -->
+          <div class="timeline-item" data-reveal="fade-right">
+            <div class="timeline-marker">
+              <i class="fa-solid fa-star"></i>
+            </div>
+            <div class="timeline-content glass-panel">
+              <span class="timeline-date">Inicios & Despertar</span>
+              <h3 class="timeline-title">Primeros Pasos y Pasión por la Lógica</h3>
+              <p>
+                Desde temprana edad sentí gran curiosidad por la informática, las computadoras y los sistemas. 
+                Entender qué ocurría detrás de una pantalla se convirtió en la chispa que encendió mi vocación.
+              </p>
+              <div class="timeline-tags">
+                <span class="tag">Curiosidad</span>
+                <span class="tag">Tecnología</span>
+                <span class="tag">Primeros Pasos</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hito 2 -->
+          <div class="timeline-item right" data-reveal="fade-left">
+            <div class="timeline-marker">
+              <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+            <div class="timeline-content glass-panel">
+              <span class="timeline-date">Formación Universitaria</span>
+              <h3 class="timeline-title">Ingeniería de Sistemas (UCV)</h3>
+              <p>
+                Inicié mi carrera universitaria en la Universidad César Vallejo (UCV). Cursos de algoritmos, 
+                estructuras de datos, arquitectura de software, bases de datos y gestión de proyectos 
+                consolidaron mi base técnica y disciplina académica.
+              </p>
+              <div class="timeline-tags">
+                <span class="tag">UCV</span>
+                <span class="tag">Ingeniería</span>
+                <span class="tag">Bases Sólidas</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hito 3 -->
+          <div class="timeline-item" data-reveal="fade-right">
+            <div class="timeline-marker">
+              <i class="fa-solid fa-laptop-code"></i>
+            </div>
+            <div class="timeline-content glass-panel">
+              <span class="timeline-date">Práctica y Aplicación</span>
+              <h3 class="timeline-title">Desarrollo de Software y Soluciones Reales</h3>
+              <p>
+                Poner en práctica lo aprendido mediante el desarrollo de aplicaciones, diseño de bases de datos 
+                y proyectos de automatización. Superando obstáculos, aprendiendo de cada desafío y mejorando día con día.
+              </p>
+              <div class="timeline-tags">
+                <span class="tag">Programación</span>
+                <span class="tag">Base de Datos</span>
+                <span class="tag">Soluciones</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hito 4 -->
+          <div class="timeline-item right" data-reveal="fade-left">
+            <div class="timeline-marker">
+              <i class="fa-solid fa-rocket"></i>
+            </div>
+            <div class="timeline-content glass-panel highlight-stage">
+              <span class="timeline-date">Presente y Visión Hacia el Futuro</span>
+              <h3 class="timeline-title">Consolidación Profesional y Nuevas Metas</h3>
+              <p>
+                Con la mirada puesta en metas ambiciosas: liderar iniciativas de ingeniería, integrarme a equipos 
+                de alto impacto y seguir evolucionando profesionalmente con la máxima calidad y entusiasmo.
+              </p>
+              <div class="timeline-tags">
+                <span class="tag">Metas Claras</span>
+                <span class="tag">Liderazgo</span>
+                <span class="tag">Futuro</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HABILIDADES & PASIONES SECTION -->
+    <section class="section skills-section" id="habilidades">
+      <div class="container">
+        <div class="section-header text-center" data-reveal="fade-up">
+          <span class="section-tag">Mis Destrezas</span>
+          <h2 class="section-title">Lo que me <span class="gradient-text">Mueve y Apasiona</span></h2>
+          <p class="section-subtitle">
+            Un balance armónico entre conocimiento técnico, competencias humanas e intereses personales.
+          </p>
+        </div>
+
+        <!-- Pestañas de categorías -->
+        <div class="category-tabs" data-reveal="fade-up">
+          <button class="tab-btn active" data-tab="all">Todas</button>
+          <button class="tab-btn" data-tab="tech">Tecnología & Sistemas</button>
+          <button class="tab-btn" data-tab="personal">Cualidades Humanas</button>
+          <button class="tab-btn" data-tab="hobbies">Estilo de Vida & Hobbies</button>
+        </div>
+
+        <div class="skills-grid" id="skills-grid">
+          <!-- Tarjeta 1: Tech -->
+          <div class="skill-card glass-panel" data-category="tech" data-reveal="fade-up">
+            <div class="skill-header">
+              <div class="skill-icon text-cyan"><i class="fa-solid fa-code"></i></div>
+              <span class="skill-level">Destacado</span>
+            </div>
+            <h4 class="skill-name">Desarrollo de Software & Web</h4>
+            <p class="skill-desc">Construcción de interfaces atractivas, lógica estructurada y aplicaciones funcionales y eficientes.</p>
+            <div class="progress-bar-wrap">
+              <div class="progress-fill" style="--percent: 92%;"></div>
+            </div>
+          </div>
+
+          <!-- Tarjeta 2: Tech -->
+          <div class="skill-card glass-panel" data-category="tech" data-reveal="fade-up">
+            <div class="skill-header">
+              <div class="skill-icon text-purple"><i class="fa-solid fa-database"></i></div>
+              <span class="skill-level">Avanzado</span>
+            </div>
+            <h4 class="skill-name">Bases de Datos & SQL</h4>
+            <p class="skill-desc">Modelado relacional, consultas estructuradas, administración con SQL Server / SSMS y persistencia de datos.</p>
+            <div class="progress-bar-wrap">
+              <div class="progress-fill" style="--percent: 90%;"></div>
+            </div>
+          </div>
+
+          <!-- Tarjeta 3: Tech -->
+          <div class="skill-card glass-panel" data-category="tech" data-reveal="fade-up">
+            <div class="skill-header">
+              <div class="skill-icon text-yellow"><i class="fa-solid fa-chart-pie"></i></div>
+              <span class="skill-level">Competente</span>
+            </div>
+            <h4 class="skill-name">Análisis de Datos & Power BI</h4>
+            <p class="skill-desc">Transformación de datos en métricas clave, reportes visuales dinámicos y tableros interactivos para toma de decisiones.</p>
+            <div class="progress-bar-wrap">
+              <div class="progress-fill" style="--percent: 86%;"></div>
+            </div>
+          </div>
+
+          <!-- Tarjeta 4: Personal -->
+          <div class="skill-card glass-panel" data-category="personal" data-reveal="fade-up">
+            <div class="skill-header">
+              <div class="skill-icon text-pink"><i class="fa-solid fa-users-gear"></i></div>
+              <span class="skill-level">Constante</span>
+            </div>
+            <h4 class="skill-name">Trabajo en Equipo & Empatía</h4>
+            <p class="skill-desc">Colaboración proactiva, comunicación abierta y alineación para lograr objetivos compartidos con éxito.</p>
+            <div class="progress-bar-wrap">
+              <div class="progress-fill" style="--percent: 95%;"></div>
+            </div>
+          </div>
+
+          <!-- Tarjeta 5: Personal -->
+          <div class="skill-card glass-panel" data-category="personal" data-reveal="fade-up">
+            <div class="skill-header">
+              <div class="skill-icon text-green"><i class="fa-solid fa-bullseye"></i></div>
+              <span class="skill-level">Enfoque</span>
+            </div>
+            <h4 class="skill-name">Resolución de Problemas</h4>
+            <p class="skill-desc">Capacidad para descomponer dificultades complejas, priorizar tareas y encontrar salidas prácticas e innovadoras.</p>
+            <div class="progress-bar-wrap">
+              <div class="progress-fill" style="--percent: 94%;"></div>
+            </div>
+          </div>
+
+          <!-- Tarjeta 6: Hobbies -->
+          <div class="skill-card glass-panel" data-category="hobbies" data-reveal="fade-up">
+            <div class="skill-header">
+              <div class="skill-icon text-blue"><i class="fa-solid fa-headphones"></i></div>
+              <span class="skill-level">Diario</span>
+            </div>
+            <h4 class="skill-name">Música, Naturaleza & Viajes</h4>
+            <p class="skill-desc">Caminatas al aire libre para despejar la mente y la música como motor en mis sesiones de enfoque y creatividad.</p>
+            <div class="progress-bar-wrap">
+              <div class="progress-fill" style="--percent: 90%;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALERÍA DE MOMENTOS & PROYECTOS SECTION -->
+    <section class="section gallery-section" id="galeria">
+      <div class="container">
+        <div class="section-header text-center" data-reveal="fade-up">
+          <span class="section-tag">Galería & Vida</span>
+          <h2 class="section-title">Momentos, Espacios y <span class="gradient-text">Proyectos</span></h2>
+          <p class="section-subtitle">
+            Un vistazo visual a los lugares donde fluyen mis ideas y a los momentos que nutren mi espíritu.
+          </p>
+        </div>
+
+        <div class="gallery-grid">
+          <!-- Foto 1: Perfil / Retrato -->
+          <div class="gallery-card glass-panel" data-reveal="fade-up" onclick="openLightbox('assets/images/profile.jpg', 'Jhairo Ventocilla', 'Retrato personal - Listo para asumir nuevos desafíos con optimismo y pasión.')">
+            <div class="gallery-img-wrapper">
+              <img src="assets/images/profile.jpg" alt="Jhairo Perfil" loading="lazy">
+              <div class="gallery-overlay">
+                <i class="fa-solid fa-magnifying-glass-plus"></i>
+                <span>Ver de cerca</span>
+              </div>
+            </div>
+            <div class="gallery-info">
+              <span class="gallery-category">Retrato Personal</span>
+              <h4>Jhairo en Esencia</h4>
+              <p>Autenticidad, presencia y determinación en cada paso.</p>
+            </div>
+          </div>
+
+          <!-- Foto 2: Espacio de Trabajo -->
+          <div class="gallery-card glass-panel" data-reveal="fade-up" onclick="openLightbox('assets/images/workspace.jpg', 'Espacio de Creación y Desarrollo', 'Mi rincón de trabajo donde se unen las líneas de código, el diseño y las ideas transformadoras.')">
+            <div class="gallery-img-wrapper">
+              <img src="assets/images/workspace.jpg" alt="Espacio de Trabajo" loading="lazy">
+              <div class="gallery-overlay">
+                <i class="fa-solid fa-magnifying-glass-plus"></i>
+                <span>Ver de cerca</span>
+              </div>
+            </div>
+            <div class="gallery-info">
+              <span class="gallery-category">Entorno & Productividad</span>
+              <h4>Espacio de Creación</h4>
+              <p>Donde las horas vuelan programando, diseñando e innovando.</p>
+            </div>
+          </div>
+
+          <!-- Foto 3: Naturaleza y Aventuras -->
+          <div class="gallery-card glass-panel" data-reveal="fade-up" onclick="openLightbox('assets/images/adventure.jpg', 'Horizontes & Aventura', 'En la cima de las montañas recordando que las mejores vistas vienen tras las mayores subidas.')">
+            <div class="gallery-img-wrapper">
+              <img src="assets/images/adventure.jpg" alt="Aventura y Montañas" loading="lazy">
+              <div class="gallery-overlay">
+                <i class="fa-solid fa-magnifying-glass-plus"></i>
+                <span>Ver de cerca</span>
+              </div>
+            </div>
+            <div class="gallery-info">
+              <span class="gallery-category">Inspiración & Vida</span>
+              <h4>Horizontes & Aventura</h4>
+              <p>Caminar senderos para desconectar, pensar en grande y recargar el alma.</p>
+            </div>
+          </div>
+
+          <!-- Foto 4: Perfil Profesional / Terno -->
+          <div class="gallery-card glass-panel" data-reveal="fade-up" onclick="openLightbox('assets/images/foto_terno.png', 'Perfil Profesional Formal', 'Foto oficial y formal con terno para trámites académicos y profesionales.')">
+            <div class="gallery-img-wrapper">
+              <img src="assets/images/foto_terno.png" alt="Foto con Terno - Formal" loading="lazy">
+              <div class="gallery-overlay">
+                <i class="fa-solid fa-magnifying-glass-plus"></i>
+                <span>Ver de cerca</span>
+              </div>
+            </div>
+            <div class="gallery-info">
+              <span class="gallery-category">Perfil Formal</span>
+              <h4>Fotografía Oficial</h4>
+              <p>Compromiso formal y presencia ejecutiva.</p>
+            </div>
+          </div>
+
+          <!-- Foto 5: Perfil GitHub -->
+          <div class="gallery-card glass-panel" data-reveal="fade-up" onclick="openLightbox('assets/images/perfil_github.jpg', 'Comunidad y Código', 'Avatar y presencia en el ecosistema de desarrollo de software y GitHub.')">
+            <div class="gallery-img-wrapper">
+              <img src="assets/images/perfil_github.jpg" alt="Perfil GitHub" loading="lazy">
+              <div class="gallery-overlay">
+                <i class="fa-solid fa-magnifying-glass-plus"></i>
+                <span>Ver de cerca</span>
+              </div>
+            </div>
+            <div class="gallery-info">
+              <span class="gallery-category">Comunidad Dev</span>
+              <h4>Perfil GitHub & Tech</h4>
+              <p>Conectando con proyectos y código abierto.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACTO SECTION -->
+    <section class="section contact-section" id="contacto">
+      <div class="container">
+        <div class="section-header text-center" data-reveal="fade-up">
+          <span class="section-tag">Conectemos</span>
+          <h2 class="section-title">¿Quieres <span class="gradient-text">Conversar</span> o Colaborar?</h2>
+          <p class="section-subtitle">
+            Siempre estoy abierto a una buena charla, oportunidades de desarrollo, proyectos de ingeniería o simplemente saludarnos.
+          </p>
+        </div>
+
+        <div class="contact-grid">
+          <!-- Tarjeta de Información de Contacto -->
+          <div class="contact-info-panel glass-panel" data-reveal="fade-right">
+            <h3>¡Hagamos equipo y creemos valor!</h3>
+            <p>
+              Ya sea para una oportunidad profesional, compartir conocimientos o charlar sobre tecnología,
+              puedes contactarme directamente por estos canales:
+            </p>
+
+            <div class="contact-methods-list">
+              <div class="contact-method-item">
+                <div class="method-icon"><i class="fa-solid fa-envelope"></i></div>
+                <div class="method-details">
+                  <span class="method-label">Correo Electrónico</span>
+                  <a href="mailto:jhairoventocilla@gmail.com" class="method-value">jhairoventocilla@gmail.com</a>
+                </div>
+              </div>
+
+              <div class="contact-method-item">
+                <div class="method-icon"><i class="fa-brands fa-whatsapp"></i></div>
+                <div class="method-details">
+                  <span class="method-label">WhatsApp Directo</span>
+                  <a href="https://wa.me/" target="_blank" rel="noopener noreferrer" class="method-value">+51 (Escribe tu WhatsApp aquí)</a>
+                </div>
+              </div>
+
+              <div class="contact-method-item">
+                <div class="method-icon"><i class="fa-solid fa-location-dot"></i></div>
+                <div class="method-details">
+                  <span class="method-label">Ubicación</span>
+                  <span class="method-value">Lima, Perú (Disponible Remoto)</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Redes Sociales -->
+            <div class="social-links-wrap">
+              <h4>Mis perfiles digitales:</h4>
+              <div class="social-icons">
+                <a href="https://linkedin.com" target="_blank" class="social-btn" aria-label="LinkedIn" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="https://github.com" target="_blank" class="social-btn" aria-label="GitHub" title="GitHub"><i class="fa-brands fa-github"></i></a>
+                <a href="https://instagram.com" target="_blank" class="social-btn" aria-label="Instagram" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Formulario Interactivo de Contacto -->
+          <div class="contact-form-panel glass-panel" data-reveal="fade-left">
+            <form id="contact-form" novalidate>
+              <div class="form-group">
+                <label for="name">¿Cómo te llamas? *</label>
+                <div class="input-wrap">
+                  <i class="fa-solid fa-user input-icon"></i>
+                  <input type="text" id="name" name="name" placeholder="Tu nombre completo" required>
+                </div>
+                <span class="error-msg" id="name-error"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="email">Tu Correo Electrónico *</label>
+                <div class="input-wrap">
+                  <i class="fa-solid fa-at input-icon"></i>
+                  <input type="email" id="email" name="email" placeholder="ejemplo@correo.com" required>
+                </div>
+                <span class="error-msg" id="email-error"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="subject">Asunto</label>
+                <div class="input-wrap">
+                  <i class="fa-solid fa-tag input-icon"></i>
+                  <input type="text" id="subject" name="subject" placeholder="Propuesta, proyecto o saludo">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="message">Mensaje para Jhairo *</label>
+                <div class="input-wrap">
+                  <i class="fa-solid fa-message input-icon textarea-icon"></i>
+                  <textarea id="message" name="message" rows="4" placeholder="Escribe tu mensaje aquí..." required></textarea>
+                </div>
+                <span class="error-msg" id="message-error"></span>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-block" id="btn-submit">
+                <span>Enviar Mensaje</span>
+                <i class="fa-solid fa-paper-plane"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- PIE DE PÁGINA (FOOTER) -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <span class="brand-text">JHAIRO VENTOCILLA</span>
+          <span class="brand-dot"></span>
+          <p>Ingeniería de Sistemas, tecnología y pasión por construir soluciones que marquen la diferencia.</p>
+        </div>
+        
+        <div class="footer-nav">
+          <a href="#hero">Inicio</a>
+          <a href="#sobre-mi">Sobre Mí</a>
+          <a href="#mi-historia">Mi Historia</a>
+          <a href="#habilidades">Pasiones</a>
+          <a href="#galeria">Momentos</a>
+          <a href="#contacto">Contacto</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; <span id="current-year"></span> Jhairo Juan de Dios Ventocilla. Todos los derechos reservados.</p>
+        <p class="footer-badge">Construido con <i class="fa-solid fa-heart text-pink"></i>, disciplina y código limpio</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Lightbox Modal para fotos -->
+  <div class="lightbox-modal" id="lightbox-modal" onclick="closeLightbox(event)">
+    <div class="lightbox-content" onclick="event.stopPropagation()">
+      <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+      <img id="lightbox-img" src="" alt="Vista ampliada">
+      <div class="lightbox-caption">
+        <h3 id="lightbox-title"></h3>
+        <p id="lightbox-desc"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contenedor para Notificaciones Toast -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- Botón Volver Arriba -->
+  <button id="back-to-top" class="btn-icon back-to-top" aria-label="Volver arriba">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <script src="script.js"></script>
+</body>
+</html>
