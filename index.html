@@ -1,25 +1,31 @@
 <!DOCTYPE html>
 <html lang="es" data-theme="dark">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Portafolio personal de Jhairo Ventocilla - Conoce mi vida, mis proyectos de ingeniería de sistemas, habilidades, historia y pasiones.">
-  <meta name="author" content="Jhairo Ventocilla">
+  <meta name="description"
+    content="Portafolio personal de Jhairo Ventocilla - Conoce mi vida, mis proyectos de ingeniería de sistemas, habilidades, historia y pasiones.">
+  <meta name="author" content="Jhairo Manuel Ventocilla Juan de Dios">
   <meta property="og:title" content="Jhairo Ventocilla | Portafolio Personal & Mi Historia">
-  <meta property="og:description" content="Bienvenido a mi espacio personal. Descubre mi trayectoria, pasiones y metas.">
+  <meta property="og:description"
+    content="Bienvenido a mi espacio personal. Descubre mi trayectoria, pasiones y metas.">
   <meta property="og:type" content="website">
   <title>Jhairo Ventocilla | Mi Vida, Pasión y Portafolio Personal</title>
 
   <!-- Google Fonts: Space Grotesk & Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&display=swap"
+    rel="stylesheet">
 
   <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
   <!-- Canvas para partículas de fondo sutiles -->
   <canvas id="bg-canvas"></canvas>
@@ -33,7 +39,7 @@
   <header class="navbar-header" id="navbar">
     <nav class="nav-container">
       <a href="#hero" class="nav-brand">
-        <span class="brand-text">JHAIRO</span>
+        <span class="brand-text">MyWebsite</span>
         <span class="brand-dot"></span>
       </a>
 
@@ -41,16 +47,20 @@
         <ul class="nav-list">
           <li class="nav-item"><a href="#hero" class="nav-link active"><i class="fa-solid fa-house"></i> Inicio</a></li>
           <li class="nav-item"><a href="#sobre-mi" class="nav-link"><i class="fa-solid fa-user"></i> Sobre Mí</a></li>
-          <li class="nav-item"><a href="#mi-historia" class="nav-link"><i class="fa-solid fa-route"></i> Mi Historia</a></li>
-          <li class="nav-item"><a href="#habilidades" class="nav-link"><i class="fa-solid fa-bolt"></i> Pasiones</a></li>
+          <li class="nav-item"><a href="#mi-historia" class="nav-link"><i class="fa-solid fa-route"></i> Mi Historia</a>
+          </li>
+          <li class="nav-item"><a href="#habilidades" class="nav-link"><i class="fa-solid fa-bolt"></i> Pasiones</a>
+          </li>
           <li class="nav-item"><a href="#galeria" class="nav-link"><i class="fa-solid fa-images"></i> Momentos</a></li>
-          <li class="nav-item"><a href="#contacto" class="nav-link"><i class="fa-solid fa-paper-plane"></i> Contacto</a></li>
+          <li class="nav-item"><a href="#contacto" class="nav-link"><i class="fa-solid fa-paper-plane"></i> Contacto</a>
+          </li>
         </ul>
       </div>
 
       <div class="nav-actions">
         <!-- Alternador Modo Oscuro / Claro -->
-        <button id="theme-toggle" class="btn-icon" aria-label="Cambiar tema de color" title="Alternar Modo Oscuro / Claro">
+        <button id="theme-toggle" class="btn-icon" aria-label="Cambiar tema de color"
+          title="Alternar Modo Oscuro / Claro">
           <i class="fa-solid fa-sun icon-sun"></i>
           <i class="fa-solid fa-moon icon-moon"></i>
         </button>
@@ -77,11 +87,11 @@
             <span class="badge-dot"></span>
             <span>Espacio Personal & Perfil de Vida</span>
           </div>
-          
+
           <h1 class="hero-title">
-            Hola, soy <span class="gradient-text">Jhairo Ventocilla</span>
+            Hola, soy <span class="gradient-text">Jhairo Manuel </span>
           </h1>
-          
+
           <div class="hero-subtitle-wrapper">
             <span class="typing-prefix">Me apasiona </span>
             <span id="typing-text" class="typing-text"></span>
@@ -89,8 +99,8 @@
           </div>
 
           <p class="hero-description">
-            Bienvenido a mi espacio personal. Aquí comparto quién soy, mi recorrido en la 
-            <strong>Ingeniería de Sistemas</strong>, las pasiones que me impulsan día a día 
+            Bienvenido a mi espacio personal. Aquí comparto quién soy, mi recorrido en la
+            <strong>Ingeniería de Sistemas</strong>, las pasiones que me impulsan día a día
             y los proyectos y metas que construyo con disciplina y dedicación.
           </p>
 
@@ -126,7 +136,8 @@
           <div class="photo-card-wrapper">
             <div class="photo-glow"></div>
             <div class="photo-card">
-              <img src="assets/images/profile.jpg" alt="Foto de perfil de Jhairo" class="profile-img" id="profile-img">
+              <img src="assets/images/GM-Jhairo.jpeg" alt="Foto de perfil de Jhairo" class="profile-img"
+                id="profile-img">
               <div class="photo-overlay-tag">
                 <i class="fa-solid fa-sparkles"></i>
                 <span>En constante evolución profesional</span>
@@ -155,7 +166,8 @@
           <span class="section-tag">Conóceme</span>
           <h2 class="section-title">¿Quién está detrás de <span class="gradient-text">Jhairo</span>?</h2>
           <p class="section-subtitle">
-            Más allá de una carrera profesional, soy alguien motivado por la perseverancia, la curiosidad y las ganas de crear valor real.
+            Más allá de una carrera profesional, soy alguien motivado por la perseverancia, la curiosidad y las ganas de
+            crear valor real.
           </p>
         </div>
 
@@ -170,13 +182,13 @@
                 <h3 class="card-title">Mi Esencia y Filosofía</h3>
               </div>
               <p class="bio-text">
-                Mi nombre es <strong>Jhairo Juan de Dios Ventocilla</strong>. Desde que elegí el camino de la 
-                tecnología y la Ingeniería de Sistemas, entendí que cada reto complejo es una oportunidad 
+                Mi nombre es <strong>Jhairo Manuel Ventocilla Juan de Dios</strong>. Desde que elegí el camino de la
+                tecnología y la Ingeniería de Sistemas, entendí que cada reto complejo es una oportunidad
                 para aprender, perfeccionar habilidades y forjar disciplina.
               </p>
               <p class="bio-text">
-                Me caracterizo por ser una persona proactiva, solidaria y orientada a los resultados. Disfruto 
-                tanto de la lógica profunda del desarrollo de sistemas como del trabajo en equipo, 
+                Me caracterizo por ser una persona proactiva, solidaria y orientada a los resultados. Disfruto
+                tanto de la lógica profunda del desarrollo de sistemas como del trabajo en equipo,
                 siempre buscando que cada proyecto tenga un impacto positivo en las personas.
               </p>
             </div>
@@ -253,7 +265,7 @@
               <span class="timeline-date">Inicios & Despertar</span>
               <h3 class="timeline-title">Primeros Pasos y Pasión por la Lógica</h3>
               <p>
-                Desde temprana edad sentí gran curiosidad por la informática, las computadoras y los sistemas. 
+                Desde temprana edad sentí gran curiosidad por la informática, las computadoras y los sistemas.
                 Entender qué ocurría detrás de una pantalla se convirtió en la chispa que encendió mi vocación.
               </p>
               <div class="timeline-tags">
@@ -273,8 +285,8 @@
               <span class="timeline-date">Formación Universitaria</span>
               <h3 class="timeline-title">Ingeniería de Sistemas (UCV)</h3>
               <p>
-                Inicié mi carrera universitaria en la Universidad César Vallejo (UCV). Cursos de algoritmos, 
-                estructuras de datos, arquitectura de software, bases de datos y gestión de proyectos 
+                Inicié mi carrera universitaria en la Universidad César Vallejo (UCV). Cursos de algoritmos,
+                estructuras de datos, arquitectura de software, bases de datos y gestión de proyectos
                 consolidaron mi base técnica y disciplina académica.
               </p>
               <div class="timeline-tags">
@@ -294,8 +306,9 @@
               <span class="timeline-date">Práctica y Aplicación</span>
               <h3 class="timeline-title">Desarrollo de Software y Soluciones Reales</h3>
               <p>
-                Poner en práctica lo aprendido mediante el desarrollo de aplicaciones, diseño de bases de datos 
-                y proyectos de automatización. Superando obstáculos, aprendiendo de cada desafío y mejorando día con día.
+                Poner en práctica lo aprendido mediante el desarrollo de aplicaciones, diseño de bases de datos
+                y proyectos de automatización. Superando obstáculos, aprendiendo de cada desafío y mejorando día con
+                día.
               </p>
               <div class="timeline-tags">
                 <span class="tag">Programación</span>
@@ -314,7 +327,7 @@
               <span class="timeline-date">Presente y Visión Hacia el Futuro</span>
               <h3 class="timeline-title">Consolidación Profesional y Nuevas Metas</h3>
               <p>
-                Con la mirada puesta en metas ambiciosas: liderar iniciativas de ingeniería, integrarme a equipos 
+                Con la mirada puesta en metas ambiciosas: liderar iniciativas de ingeniería, integrarme a equipos
                 de alto impacto y seguir evolucionando profesionalmente con la máxima calidad y entusiasmo.
               </p>
               <div class="timeline-tags">
@@ -355,7 +368,8 @@
               <span class="skill-level">Destacado</span>
             </div>
             <h4 class="skill-name">Desarrollo de Software & Web</h4>
-            <p class="skill-desc">Construcción de interfaces atractivas, lógica estructurada y aplicaciones funcionales y eficientes.</p>
+            <p class="skill-desc">Construcción de interfaces atractivas, lógica estructurada y aplicaciones funcionales
+              y eficientes.</p>
             <div class="progress-bar-wrap">
               <div class="progress-fill" style="--percent: 92%;"></div>
             </div>
@@ -368,7 +382,8 @@
               <span class="skill-level">Avanzado</span>
             </div>
             <h4 class="skill-name">Bases de Datos & SQL</h4>
-            <p class="skill-desc">Modelado relacional, consultas estructuradas, administración con SQL Server / SSMS y persistencia de datos.</p>
+            <p class="skill-desc">Modelado relacional, consultas estructuradas, administración con SQL Server / SSMS y
+              persistencia de datos.</p>
             <div class="progress-bar-wrap">
               <div class="progress-fill" style="--percent: 90%;"></div>
             </div>
@@ -381,7 +396,8 @@
               <span class="skill-level">Competente</span>
             </div>
             <h4 class="skill-name">Análisis de Datos & Power BI</h4>
-            <p class="skill-desc">Transformación de datos en métricas clave, reportes visuales dinámicos y tableros interactivos para toma de decisiones.</p>
+            <p class="skill-desc">Transformación de datos en métricas clave, reportes visuales dinámicos y tableros
+              interactivos para toma de decisiones.</p>
             <div class="progress-bar-wrap">
               <div class="progress-fill" style="--percent: 86%;"></div>
             </div>
@@ -394,7 +410,8 @@
               <span class="skill-level">Constante</span>
             </div>
             <h4 class="skill-name">Trabajo en Equipo & Empatía</h4>
-            <p class="skill-desc">Colaboración proactiva, comunicación abierta y alineación para lograr objetivos compartidos con éxito.</p>
+            <p class="skill-desc">Colaboración proactiva, comunicación abierta y alineación para lograr objetivos
+              compartidos con éxito.</p>
             <div class="progress-bar-wrap">
               <div class="progress-fill" style="--percent: 95%;"></div>
             </div>
@@ -407,7 +424,8 @@
               <span class="skill-level">Enfoque</span>
             </div>
             <h4 class="skill-name">Resolución de Problemas</h4>
-            <p class="skill-desc">Capacidad para descomponer dificultades complejas, priorizar tareas y encontrar salidas prácticas e innovadoras.</p>
+            <p class="skill-desc">Capacidad para descomponer dificultades complejas, priorizar tareas y encontrar
+              salidas prácticas e innovadoras.</p>
             <div class="progress-bar-wrap">
               <div class="progress-fill" style="--percent: 94%;"></div>
             </div>
@@ -420,7 +438,8 @@
               <span class="skill-level">Diario</span>
             </div>
             <h4 class="skill-name">Música, Naturaleza & Viajes</h4>
-            <p class="skill-desc">Caminatas al aire libre para despejar la mente y la música como motor en mis sesiones de enfoque y creatividad.</p>
+            <p class="skill-desc">Caminatas al aire libre para despejar la mente y la música como motor en mis sesiones
+              de enfoque y creatividad.</p>
             <div class="progress-bar-wrap">
               <div class="progress-fill" style="--percent: 90%;"></div>
             </div>
@@ -442,9 +461,10 @@
 
         <div class="gallery-grid">
           <!-- Foto 1: Perfil / Retrato -->
-          <div class="gallery-card glass-panel" data-reveal="fade-up" onclick="openLightbox('assets/images/profile.jpg', 'Jhairo Ventocilla', 'Retrato personal - Listo para asumir nuevos desafíos con optimismo y pasión.')">
+          <div class="gallery-card glass-panel" data-reveal="fade-up"
+            onclick="openLightbox('assets/images/GM-Jhairo.jpeg', 'Jhairo Ventocilla', 'Retrato personal - Listo para asumir nuevos desafíos con optimismo y pasión.')">
             <div class="gallery-img-wrapper">
-              <img src="assets/images/profile.jpg" alt="Jhairo Perfil" loading="lazy">
+              <img src="assets/images/GM-Jhairo.jpeg" alt="Jhairo Perfil" loading="lazy">
               <div class="gallery-overlay">
                 <i class="fa-solid fa-magnifying-glass-plus"></i>
                 <span>Ver de cerca</span>
@@ -458,7 +478,8 @@
           </div>
 
           <!-- Foto 2: Espacio de Trabajo -->
-          <div class="gallery-card glass-panel" data-reveal="fade-up" onclick="openLightbox('assets/images/workspace.jpg', 'Espacio de Creación y Desarrollo', 'Mi rincón de trabajo donde se unen las líneas de código, el diseño y las ideas transformadoras.')">
+          <div class="gallery-card glass-panel" data-reveal="fade-up"
+            onclick="openLightbox('assets/images/workspace.jpg', 'Espacio de Creación y Desarrollo', 'Mi rincón de trabajo donde se unen las líneas de código, el diseño y las ideas transformadoras.')">
             <div class="gallery-img-wrapper">
               <img src="assets/images/workspace.jpg" alt="Espacio de Trabajo" loading="lazy">
               <div class="gallery-overlay">
@@ -474,9 +495,10 @@
           </div>
 
           <!-- Foto 3: Naturaleza y Aventuras -->
-          <div class="gallery-card glass-panel" data-reveal="fade-up" onclick="openLightbox('assets/images/adventure.jpg', 'Horizontes & Aventura', 'En la cima de las montañas recordando que las mejores vistas vienen tras las mayores subidas.')">
+          <div class="gallery-card glass-panel" data-reveal="fade-up"
+            onclick="openLightbox('assets/images/GMPaisaje.jpeg', 'Horizontes & Aventura', 'En la cima de las montañas recordando que las mejores vistas vienen tras las mayores subidas.')">
             <div class="gallery-img-wrapper">
-              <img src="assets/images/adventure.jpg" alt="Aventura y Montañas" loading="lazy">
+              <img src="assets/images/GMPaisaje.jpeg" alt="Aventura y Montañas" loading="lazy">
               <div class="gallery-overlay">
                 <i class="fa-solid fa-magnifying-glass-plus"></i>
                 <span>Ver de cerca</span>
@@ -490,9 +512,10 @@
           </div>
 
           <!-- Foto 4: Perfil Profesional / Terno -->
-          <div class="gallery-card glass-panel" data-reveal="fade-up" onclick="openLightbox('assets/images/foto_terno.png', 'Perfil Profesional Formal', 'Foto oficial y formal con terno para trámites académicos y profesionales.')">
+          <div class="gallery-card glass-panel" data-reveal="fade-up"
+            onclick="openLightbox('assets/images/GM-Formal.jpeg', 'Perfil Profesional Formal', 'Foto oficial y formal con terno para trámites académicos y profesionales.')">
             <div class="gallery-img-wrapper">
-              <img src="assets/images/foto_terno.png" alt="Foto con Terno - Formal" loading="lazy">
+              <img src="assets/images/GM-Formal.jpeg" alt="Foto con Terno - Formal" loading="lazy">
               <div class="gallery-overlay">
                 <i class="fa-solid fa-magnifying-glass-plus"></i>
                 <span>Ver de cerca</span>
@@ -506,7 +529,8 @@
           </div>
 
           <!-- Foto 5: Perfil GitHub -->
-          <div class="gallery-card glass-panel" data-reveal="fade-up" onclick="openLightbox('assets/images/perfil_github.jpg', 'Comunidad y Código', 'Avatar y presencia en el ecosistema de desarrollo de software y GitHub.')">
+          <div class="gallery-card glass-panel" data-reveal="fade-up"
+            onclick="openLightbox('assets/images/perfil_github.jpg', 'Comunidad y Código', 'Avatar y presencia en el ecosistema de desarrollo de software y GitHub.')">
             <div class="gallery-img-wrapper">
               <img src="assets/images/perfil_github.jpg" alt="Perfil GitHub" loading="lazy">
               <div class="gallery-overlay">
@@ -531,7 +555,8 @@
           <span class="section-tag">Conectemos</span>
           <h2 class="section-title">¿Quieres <span class="gradient-text">Conversar</span> o Colaborar?</h2>
           <p class="section-subtitle">
-            Siempre estoy abierto a una buena charla, oportunidades de desarrollo, proyectos de ingeniería o simplemente saludarnos.
+            Siempre estoy abierto a una buena charla, oportunidades de desarrollo, proyectos de ingeniería o simplemente
+            saludarnos.
           </p>
         </div>
 
@@ -549,7 +574,7 @@
                 <div class="method-icon"><i class="fa-solid fa-envelope"></i></div>
                 <div class="method-details">
                   <span class="method-label">Correo Electrónico</span>
-                  <a href="mailto:jhairoventocilla@gmail.com" class="method-value">jhairoventocilla@gmail.com</a>
+                  <a href="mailto:ventocilla.manuel@gmail.com" class="method-value">ventocilla.manuel@gmail.com</a>
                 </div>
               </div>
 
@@ -557,7 +582,8 @@
                 <div class="method-icon"><i class="fa-brands fa-whatsapp"></i></div>
                 <div class="method-details">
                   <span class="method-label">WhatsApp Directo</span>
-                  <a href="https://wa.me/" target="_blank" rel="noopener noreferrer" class="method-value">+51 (Escribe tu WhatsApp aquí)</a>
+                  <a href="https://wa.me/51912436798" target="_blank" rel="noopener noreferrer" class="method-value">+51
+                    912436798</a>
                 </div>
               </div>
 
@@ -574,9 +600,12 @@
             <div class="social-links-wrap">
               <h4>Mis perfiles digitales:</h4>
               <div class="social-icons">
-                <a href="https://linkedin.com" target="_blank" class="social-btn" aria-label="LinkedIn" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-                <a href="https://github.com" target="_blank" class="social-btn" aria-label="GitHub" title="GitHub"><i class="fa-brands fa-github"></i></a>
-                <a href="https://instagram.com" target="_blank" class="social-btn" aria-label="Instagram" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/in/jhairo-ventocilla-juan-de-dios-b8a200271/" target="_blank"
+                  class="social-btn" aria-label="LinkedIn" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="https://github.com/JhairoVJDD" target="_blank" class="social-btn" aria-label="GitHub"
+                  title="GitHub"><i class="fa-brands fa-github"></i></a>
+                <a href="https://www.instagram.com/wrld.jdd?cplk=cHEyZWJteW9tNm1i" target="_blank" class="social-btn"
+                  aria-label="Instagram" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
               </div>
             </div>
           </div>
@@ -614,7 +643,8 @@
                 <label for="message">Mensaje para Jhairo *</label>
                 <div class="input-wrap">
                   <i class="fa-solid fa-message input-icon textarea-icon"></i>
-                  <textarea id="message" name="message" rows="4" placeholder="Escribe tu mensaje aquí..." required></textarea>
+                  <textarea id="message" name="message" rows="4" placeholder="Escribe tu mensaje aquí..."
+                    required></textarea>
                 </div>
                 <span class="error-msg" id="message-error"></span>
               </div>
@@ -635,11 +665,11 @@
     <div class="container footer-content">
       <div class="footer-top">
         <div class="footer-brand">
-          <span class="brand-text">JHAIRO VENTOCILLA</span>
+          <span class="brand-text">JHAIRO MANUEL VENTOCILLA JUAN DE DIOS </span>
           <span class="brand-dot"></span>
           <p>Ingeniería de Sistemas, tecnología y pasión por construir soluciones que marquen la diferencia.</p>
         </div>
-        
+
         <div class="footer-nav">
           <a href="#hero">Inicio</a>
           <a href="#sobre-mi">Sobre Mí</a>
@@ -651,8 +681,9 @@
       </div>
 
       <div class="footer-bottom">
-        <p>&copy; <span id="current-year"></span> Jhairo Juan de Dios Ventocilla. Todos los derechos reservados.</p>
-        <p class="footer-badge">Construido con <i class="fa-solid fa-heart text-pink"></i>, disciplina y código limpio</p>
+        <p>&copy; <span id="current-year"></span> Jhairo Ventocilla Juan de Dios. Todos los derechos reservados.</p>
+        <p class="footer-badge">Construido con <i class="fa-solid fa-heart text-pink"></i>, disciplina y código limpio
+        </p>
       </div>
     </div>
   </footer>
@@ -679,4 +710,5 @@
 
   <script src="script.js"></script>
 </body>
+
 </html>
