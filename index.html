@@ -27,15 +27,23 @@
 </head>
 
 <body>
-  <!-- Canvas para partículas de fondo sutiles -->
-  <canvas id="bg-canvas"></canvas>
+  <!-- ===================================================================
+       FONDO INTERACTIVO PS2 (SEVEN WONDERS & BRUMA DE PARTÍCULAS ETÉREAS)
+       Renderizado dinámico en 3D con Anime.js e interactividad con el cursor
+       =================================================================== -->
+  <canvas id="ps2-canvas"></canvas>
 
-  <!-- Luces ambientales (Glow Orbs) -->
+  <!-- Luces ambientales sutiles (Glow Orbs) -->
   <div class="ambient-glow glow-1"></div>
   <div class="ambient-glow glow-2"></div>
   <div class="ambient-glow glow-3"></div>
 
-  <!-- Barra de Navegación -->
+  <!-- ===================================================================
+       CAMBIO EN EL CONTENEDOR: BARRA DE NAVEGACIÓN FLOTANTE Y REDONDEADA
+       Al hacer scroll hacia abajo, la barra adquiere bordes redondeados (isla pill),
+       se separa de los márgenes y elimina el aspecto recto tradicional.
+       (Inspirado en componentes modernos de ReUI, Kokonut UI y UI Inspo)
+       =================================================================== -->
   <header class="navbar-header" id="navbar">
     <nav class="nav-container">
       <a href="#hero" class="nav-brand">
@@ -47,13 +55,11 @@
         <ul class="nav-list">
           <li class="nav-item"><a href="#hero" class="nav-link active"><i class="fa-solid fa-house"></i> Inicio</a></li>
           <li class="nav-item"><a href="#sobre-mi" class="nav-link"><i class="fa-solid fa-user"></i> Sobre Mí</a></li>
-          <li class="nav-item"><a href="#mi-historia" class="nav-link"><i class="fa-solid fa-route"></i> Mi Historia</a>
-          </li>
-          <li class="nav-item"><a href="#habilidades" class="nav-link"><i class="fa-solid fa-bolt"></i> Pasiones</a>
-          </li>
+          <li class="nav-item"><a href="#mi-historia" class="nav-link"><i class="fa-solid fa-route"></i> Mi Historia</a></li>
+          <li class="nav-item"><a href="#lenguajes" class="nav-link"><i class="fa-solid fa-code"></i> Lenguajes</a></li>
+          <li class="nav-item"><a href="#habilidades" class="nav-link"><i class="fa-solid fa-bolt"></i> Pasiones</a></li>
           <li class="nav-item"><a href="#galeria" class="nav-link"><i class="fa-solid fa-images"></i> Momentos</a></li>
-          <li class="nav-item"><a href="#contacto" class="nav-link"><i class="fa-solid fa-paper-plane"></i> Contacto</a>
-          </li>
+          <li class="nav-item"><a href="#contacto" class="nav-link"><i class="fa-solid fa-paper-plane"></i> Contacto</a></li>
         </ul>
       </div>
 
@@ -89,7 +95,7 @@
           </div>
 
           <h1 class="hero-title">
-            Hola, soy <span class="gradient-text">Jhairo Manuel </span>
+            Hola, soy <span class="gradient-text">Jhairo Ventocilla</span>
           </h1>
 
           <div class="hero-subtitle-wrapper">
@@ -109,9 +115,9 @@
               <span>Conoce Mi Historia</span>
               <i class="fa-solid fa-arrow-down"></i>
             </a>
-            <a href="#contacto" class="btn btn-glass">
-              <span>Escríbeme</span>
-              <i class="fa-solid fa-envelope"></i>
+            <a href="#lenguajes" class="btn btn-glass">
+              <span>Mis Lenguajes</span>
+              <i class="fa-solid fa-code"></i>
             </a>
           </div>
 
@@ -136,8 +142,7 @@
           <div class="photo-card-wrapper">
             <div class="photo-glow"></div>
             <div class="photo-card">
-              <img src="assets/images/GM-Jhairo.jpeg" alt="Foto de perfil de Jhairo" class="profile-img"
-                id="profile-img">
+              <img src="assets/images/profile.jpg" alt="Foto de perfil de Jhairo" class="profile-img" id="profile-img">
               <div class="photo-overlay-tag">
                 <i class="fa-solid fa-sparkles"></i>
                 <span>En constante evolución profesional</span>
@@ -341,6 +346,56 @@
       </div>
     </section>
 
+    <!-- ===================================================================
+         NUEVA SECCIÓN: LENGUAJES & EXPERIENCIA (CARRUSEL 3D COVERFLOW)
+         Inspirado en componentes de ReUI, Kokonut UI, UI Inspo y animado con Anime.js
+         =================================================================== -->
+    <section class="section tech-coverflow-section" id="lenguajes">
+      <div class="container">
+        <div class="section-header text-center" data-reveal="fade-up">
+          <span class="section-tag"><i class="fa-solid fa-layer-group"></i> Stack de Experiencia</span>
+          <h2 class="section-title">Lenguajes & <span class="gradient-text">Tecnologías Clave</span></h2>
+          <p class="section-subtitle">
+            Explora en perspectiva 3D interactiva los lenguajes de programación, motores de bases de datos y herramientas con las que desarrollo soluciones.
+          </p>
+        </div>
+
+        <!-- Filtros de categoría -->
+        <div class="coverflow-filter-bar" data-reveal="fade-up">
+          <button class="cf-filter-btn active" data-filter="all"><i class="fa-solid fa-globe"></i> Todos</button>
+          <button class="cf-filter-btn" data-filter="lenguajes"><i class="fa-solid fa-code"></i> Lenguajes</button>
+          <button class="cf-filter-btn" data-filter="datos"><i class="fa-solid fa-database"></i> Bases de Datos & BI</button>
+          <button class="cf-filter-btn" data-filter="web"><i class="fa-solid fa-desktop"></i> Frontend & Software</button>
+        </div>
+
+        <!-- Escenario 3D Coverflow -->
+        <div class="coverflow-viewport" data-reveal="fade-up">
+          <!-- Botón Anterior -->
+          <button class="cf-nav-btn cf-prev" id="cf-prev-btn" aria-label="Tarjeta anterior">
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+
+          <!-- Track 3D interactivo -->
+          <div class="coverflow-stage" id="coverflow-stage">
+            <!-- Las tarjetas se generan o inyectan con interactividad 3D y Anime.js -->
+          </div>
+
+          <!-- Botón Siguiente -->
+          <button class="cf-nav-btn cf-next" id="cf-next-btn" aria-label="Tarjeta siguiente">
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
+        </div>
+
+        <!-- Indicador de Paginación / Puntos interactivos -->
+        <div class="coverflow-dots-container" id="coverflow-dots"></div>
+
+        <!-- Instrucción de Interacción -->
+        <div class="coverflow-hint text-center">
+          <span><i class="fa-solid fa-arrows-left-right"></i> Haz clic en las tarjetas, usa las flechas o desliza para navegar en 3D</span>
+        </div>
+      </div>
+    </section>
+
     <!-- HABILIDADES & PASIONES SECTION -->
     <section class="section skills-section" id="habilidades">
       <div class="container">
@@ -462,9 +517,9 @@
         <div class="gallery-grid">
           <!-- Foto 1: Perfil / Retrato -->
           <div class="gallery-card glass-panel" data-reveal="fade-up"
-            onclick="openLightbox('assets/images/GM-Jhairo.jpeg', 'Jhairo Ventocilla', 'Retrato personal - Listo para asumir nuevos desafíos con optimismo y pasión.')">
+            onclick="openLightbox('assets/images/profile.jpg', 'Jhairo Ventocilla', 'Retrato personal - Listo para asumir nuevos desafíos con optimismo y pasión.')">
             <div class="gallery-img-wrapper">
-              <img src="assets/images/GM-Jhairo.jpeg" alt="Jhairo Perfil" loading="lazy">
+              <img src="assets/images/profile.jpg" alt="Jhairo Perfil" loading="lazy">
               <div class="gallery-overlay">
                 <i class="fa-solid fa-magnifying-glass-plus"></i>
                 <span>Ver de cerca</span>
@@ -496,9 +551,9 @@
 
           <!-- Foto 3: Naturaleza y Aventuras -->
           <div class="gallery-card glass-panel" data-reveal="fade-up"
-            onclick="openLightbox('assets/images/GMPaisaje.jpeg', 'Horizontes & Aventura', 'En la cima de las montañas recordando que las mejores vistas vienen tras las mayores subidas.')">
+            onclick="openLightbox('assets/images/adventure.jpg', 'Horizontes & Aventura', 'En la cima de las montañas recordando que las mejores vistas vienen tras las mayores subidas.')">
             <div class="gallery-img-wrapper">
-              <img src="assets/images/GMPaisaje.jpeg" alt="Aventura y Montañas" loading="lazy">
+              <img src="assets/images/adventure.jpg" alt="Aventura y Montañas" loading="lazy">
               <div class="gallery-overlay">
                 <i class="fa-solid fa-magnifying-glass-plus"></i>
                 <span>Ver de cerca</span>
@@ -513,9 +568,9 @@
 
           <!-- Foto 4: Perfil Profesional / Terno -->
           <div class="gallery-card glass-panel" data-reveal="fade-up"
-            onclick="openLightbox('assets/images/GM-Formal.jpeg', 'Perfil Profesional Formal', 'Foto oficial y formal con terno para trámites académicos y profesionales.')">
+            onclick="openLightbox('assets/images/foto_terno.png', 'Perfil Profesional Formal', 'Foto oficial y formal con terno para trámites académicos y profesionales.')">
             <div class="gallery-img-wrapper">
-              <img src="assets/images/GM-Formal.jpeg" alt="Foto con Terno - Formal" loading="lazy">
+              <img src="assets/images/foto_terno.png" alt="Foto con Terno - Formal" loading="lazy">
               <div class="gallery-overlay">
                 <i class="fa-solid fa-magnifying-glass-plus"></i>
                 <span>Ver de cerca</span>
@@ -555,8 +610,8 @@
           <span class="section-tag">Conectemos</span>
           <h2 class="section-title">¿Quieres <span class="gradient-text">Conversar</span> o Colaborar?</h2>
           <p class="section-subtitle">
-            Siempre estoy abierto a una buena charla, oportunidades de desarrollo, proyectos de ingeniería o simplemente
-            saludarnos.
+            Siempre estoy abierto a una buena charla, oportunidades de desarrollo, proyectos de ingeniería o
+            simplemente saludarnos.
           </p>
         </div>
 
@@ -574,7 +629,7 @@
                 <div class="method-icon"><i class="fa-solid fa-envelope"></i></div>
                 <div class="method-details">
                   <span class="method-label">Correo Electrónico</span>
-                  <a href="mailto:ventocilla.manuel@gmail.com" class="method-value">ventocilla.manuel@gmail.com</a>
+                  <a href="mailto:jhairoventocilla@gmail.com" class="method-value">jhairoventocilla@gmail.com</a>
                 </div>
               </div>
 
@@ -582,8 +637,7 @@
                 <div class="method-icon"><i class="fa-brands fa-whatsapp"></i></div>
                 <div class="method-details">
                   <span class="method-label">WhatsApp Directo</span>
-                  <a href="https://wa.me/51912436798" target="_blank" rel="noopener noreferrer" class="method-value">+51
-                    912436798</a>
+                  <a href="https://wa.me/" target="_blank" rel="noopener noreferrer" class="method-value">+51 (Escribe tu WhatsApp aquí)</a>
                 </div>
               </div>
 
@@ -600,12 +654,12 @@
             <div class="social-links-wrap">
               <h4>Mis perfiles digitales:</h4>
               <div class="social-icons">
-                <a href="https://www.linkedin.com/in/jhairo-ventocilla-juan-de-dios-b8a200271/" target="_blank"
-                  class="social-btn" aria-label="LinkedIn" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="https://linkedin.com" target="_blank" class="social-btn" aria-label="LinkedIn"
+                  title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
                 <a href="https://github.com/JhairoVJDD" target="_blank" class="social-btn" aria-label="GitHub"
                   title="GitHub"><i class="fa-brands fa-github"></i></a>
-                <a href="https://www.instagram.com/wrld.jdd?cplk=cHEyZWJteW9tNm1i" target="_blank" class="social-btn"
-                  aria-label="Instagram" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://instagram.com" target="_blank" class="social-btn" aria-label="Instagram"
+                  title="Instagram"><i class="fa-brands fa-instagram"></i></a>
               </div>
             </div>
           </div>
@@ -665,7 +719,7 @@
     <div class="container footer-content">
       <div class="footer-top">
         <div class="footer-brand">
-          <span class="brand-text">JHAIRO MANUEL VENTOCILLA JUAN DE DIOS </span>
+          <span class="brand-text">JHAIRO VENTOCILLA</span>
           <span class="brand-dot"></span>
           <p>Ingeniería de Sistemas, tecnología y pasión por construir soluciones que marquen la diferencia.</p>
         </div>
@@ -674,6 +728,7 @@
           <a href="#hero">Inicio</a>
           <a href="#sobre-mi">Sobre Mí</a>
           <a href="#mi-historia">Mi Historia</a>
+          <a href="#lenguajes">Lenguajes</a>
           <a href="#habilidades">Pasiones</a>
           <a href="#galeria">Momentos</a>
           <a href="#contacto">Contacto</a>
@@ -681,7 +736,7 @@
       </div>
 
       <div class="footer-bottom">
-        <p>&copy; <span id="current-year"></span> Jhairo Ventocilla Juan de Dios. Todos los derechos reservados.</p>
+        <p>&copy; <span id="current-year"></span> Jhairo Manuel Ventocilla Juan de Dios. Todos los derechos reservados.</p>
         <p class="footer-badge">Construido con <i class="fa-solid fa-heart text-pink"></i>, disciplina y código limpio
         </p>
       </div>
@@ -708,6 +763,8 @@
     <i class="fa-solid fa-arrow-up"></i>
   </button>
 
+  <!-- Anime.js CDN (Para animaciones fluidas 3D y partículas PS2) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
   <script src="script.js"></script>
 </body>
 
