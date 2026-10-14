@@ -46,187 +46,443 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ===================================================================
-   1. FONDO PS2 (SEVEN WONDERS & NUBE DE PARTÍCULAS ETÉREAS) CON ANIME.JS
+   1. FONDO PS2 REAL CON THREE.JS (WEBGL, MONOLITOS 3D, NIEBLA Y RAYOS DE LUZ)
+   Inspirado directamente en la pantalla de inicio y BIOS de PlayStation 2
    =================================================================== */
 function initPS2Background() {
   const canvas = document.getElementById('ps2-canvas');
   if (!canvas) return;
 
-  const ctx = canvas.getContext('2d');
-  let width = (canvas.width = window.innerWidth);
-  let height = (canvas.height = window.innerHeight);
-
-  window.addEventListener('resize', () => {
-    width = canvas.width = window.innerWidth;
-    height = canvas.height = window.innerHeight;
-  });
-
-  // Interacción suave con el cursor (Inspirado en el joystick de PS2)
-  const camera = {
-    x: 0,
-    y: 0,
-    targetX: 0,
-    targetY: 0,
-    rotY: 0,
-    wavePhase: 0
-  };
-
-  window.addEventListener('mousemove', (e) => {
-    camera.targetX = (e.clientX - width / 2) * 0.0004;
-    camera.targetY = (e.clientY - height / 2) * 0.0003;
-  });
-
-  // Usar Anime.js para generar ondulación orgánica y respiración cósmica
-  if (window.anime) {
-    anime({
-      targets: camera,
-      wavePhase: Math.PI * 2,
-      duration: 14000,
-      easing: 'linear',
-      loop: true
-    });
+  if (typeof THREE === 'undefined') {
+    // Si Three.js no ha terminado de cargar, reintentar en 150ms
+    setTimeout(initPS2Background, 150);
+    return;
   }
 
-  // 7 Monolitos / Columnas de Cristal 3D (The PS2 Seven Wonders)
-  const towers = [
-    { x: -280, z: 320, w: 38, h: 220, baseH: 220, rot: 0.1 },
-    { x: -140, z: 460, w: 46, h: 280, baseH: 280, rot: -0.2 },
-    { x: 0,    z: 520, w: 54, h: 340, baseH: 340, rot: 0.05 },
-    { x: 150,  z: 440, w: 44, h: 260, baseH: 260, rot: 0.25 },
-    { x: 290,  z: 340, w: 36, h: 210, baseH: 210, rot: -0.15 },
-    { x: -200, z: 620, w: 50, h: 310, baseH: 310, rot: 0.3 },
-    { x: 210,  z: 600, w: 48, h: 290, baseH: 290, rot: -0.3 }
+  // 1. Escena y Niebla Mística PS2
+  const scene = new THREE.Scene();
+  const fogColorDark = 0x020512;
+  const fogColorLight = 0xf0f4fc;
+  scene.fog = new THREE.FogExp2(fogColorDark, 0.0018);
+
+  // 2. Cámara (Vista cenital en picada idéntica a la referencia de PS2)
+  const camera = new THREE.PerspectiveCamera(
+    52,
+    window.innerWidth / window.innerHeight,
+    1,
+    3000
+  );
+  camera.position.set(0, 480, 480);
+  camera.lookAt(0, -60, 0);
+
+  // 3. Renderizador WebGL
+  const renderer = new THREE.WebGLRenderer({
+    canvas: canvas,
+    alpha: true,
+    antialias: true,
+    powerPreference: 'high-performance'
+  });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.15;
+
+  // 4. Luces Ambientales y de Relleno
+  const ambientLight = new THREE.AmbientLight(0x0a1428, 1.4);
+  scene.add(ambientLight);
+
+  // Luz cenital azulada hacia el abismo
+  const topLight = new THREE.DirectionalLight(0x4070d0, 1.2);
+  topLight.position.set(0, 500, 100);
+  scene.add(topLight);
+
+  // 5. Núcleo de Niebla Volumétrica Azul (Centro del abismo PS2)
+  const coreCanvas = document.createElement('canvas');
+  coreCanvas.width = 256;
+  coreCanvas.height = 256;
+  const cctx = coreCanvas.getContext('2d');
+  const coreGrad = cctx.createRadialGradient(128, 128, 10, 128, 128, 128);
+  coreGrad.addColorStop(0, 'rgba(0, 120, 255, 0.9)');
+  coreGrad.addColorStop(0.3, 'rgba(30, 40, 200, 0.6)');
+  coreGrad.addColorStop(0.65, 'rgba(120, 20, 220, 0.25)');
+  coreGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+  cctx.fillStyle = coreGrad;
+  cctx.fillRect(0, 0, 256, 256);
+
+  const coreTexture = new THREE.CanvasTexture(coreCanvas);
+  const coreMaterial = new THREE.SpriteMaterial({
+    map: coreTexture,
+    transparent: true,
+    blending: THREE.AdditiveBlending,
+    opacity: 0.85
+  });
+  const coreGlow = new THREE.Sprite(coreMaterial);
+  coreGlow.scale.set(700, 700, 1);
+  coreGlow.position.set(0, -180, 0);
+  scene.add(coreGlow);
+
+  // 6. Generar Texturas Procedurales de Monolito PS2 (Piedra/Granito digital con biseles)
+  const stoneCanvas = document.createElement('canvas');
+  stoneCanvas.width = 512;
+  stoneCanvas.height = 1024;
+  const sctx = stoneCanvas.getContext('2d');
+
+  // Base gris/azulada oscura
+  sctx.fillStyle = '#222838';
+  sctx.fillRect(0, 0, 512, 1024);
+
+  // Ruido de textura de piedra y vetas
+  for (let i = 0; i < 45000; i++) {
+    const rx = Math.random() * 512;
+    const ry = Math.random() * 1024;
+    const lum = Math.floor(Math.random() * 60) + 18;
+    sctx.fillStyle = `rgb(${lum}, ${lum + 4}, ${lum + 14})`;
+    sctx.fillRect(rx, ry, Math.random() * 3 + 1, Math.random() * 5 + 1);
+  }
+
+  // Biseles y costuras verticales características del hardware PS2
+  sctx.strokeStyle = 'rgba(255, 255, 255, 0.16)';
+  sctx.lineWidth = 4;
+  sctx.strokeRect(6, 6, 500, 1012);
+  sctx.strokeStyle = 'rgba(0, 0, 0, 0.5)';
+  sctx.lineWidth = 6;
+  sctx.strokeRect(10, 10, 492, 1004);
+
+  const stoneTexture = new THREE.CanvasTexture(stoneCanvas);
+  stoneTexture.wrapS = THREE.RepeatWrapping;
+  stoneTexture.wrapT = THREE.RepeatWrapping;
+  stoneTexture.repeat.set(1, 3);
+
+  // Textura para caras superiores brillantes (Memory card top / Save icon glow)
+  const topGlowCanvas = document.createElement('canvas');
+  topGlowCanvas.width = 256;
+  topGlowCanvas.height = 256;
+  const tctx = topGlowCanvas.getContext('2d');
+  tctx.fillStyle = '#10182b';
+  tctx.fillRect(0, 0, 256, 256);
+  tctx.fillStyle = '#e2f1ff';
+  tctx.fillRect(16, 16, 224, 224);
+  tctx.strokeStyle = '#38bdf8';
+  tctx.lineWidth = 14;
+  tctx.strokeRect(26, 26, 204, 204);
+  const topGlowTexture = new THREE.CanvasTexture(topGlowCanvas);
+
+  // 7. Construcción de Monolitos / Columnas PS2 (Distribución concéntrica como en la imagen)
+  const towersGroup = new THREE.Group();
+  scene.add(towersGroup);
+
+  const pillarLayout = [
+    // Centro
+    { x: 0, z: 0, w: 58, d: 58, h: 480, topGlow: true, emissive: 0xa8e6ff },
+    { x: -75, z: 45, w: 42, d: 42, h: 410, topGlow: true, emissive: 0x38bdf8 },
+    { x: 65, z: -55, w: 38, d: 38, h: 370, topGlow: false },
+    { x: 25, z: 85, w: 36, d: 36, h: 320, topGlow: false },
+    { x: -90, z: -60, w: 48, d: 48, h: 440, topGlow: false },
+
+    // Anillo Medio
+    { x: -160, z: 30, w: 46, d: 46, h: 520, topGlow: false },
+    { x: -140, z: 150, w: 36, d: 36, h: 390, topGlow: false },
+    { x: 30, z: 180, w: 44, d: 44, h: 460, topGlow: false },
+    { x: 160, z: 90, w: 52, d: 52, h: 560, topGlow: false },
+    { x: 190, z: -40, w: 40, d: 40, h: 430, topGlow: false },
+    { x: 120, z: -160, w: 48, d: 48, h: 490, topGlow: false },
+    { x: -40, z: -190, w: 38, d: 38, h: 380, topGlow: false },
+    { x: -170, z: -130, w: 42, d: 42, h: 450, topGlow: false },
+
+    // Anillo Exterior / Columnas Perimetrales Altas
+    { x: -260, z: 80, w: 56, d: 56, h: 680, topGlow: false },
+    { x: -220, z: 230, w: 48, d: 48, h: 580, topGlow: false },
+    { x: -70, z: 280, w: 42, d: 42, h: 510, topGlow: false },
+    { x: 110, z: 270, w: 50, d: 50, h: 620, topGlow: false },
+    { x: 250, z: 190, w: 54, d: 54, h: 690, topGlow: false },
+    { x: 280, z: 20, w: 46, d: 46, h: 610, topGlow: false },
+    { x: 260, z: -170, w: 52, d: 52, h: 670, topGlow: false },
+    { x: 100, z: -280, w: 48, d: 48, h: 590, topGlow: false },
+    { x: -90, z: -290, w: 44, d: 44, h: 530, topGlow: false },
+    { x: -250, z: -220, w: 50, d: 50, h: 640, topGlow: false },
+
+    // Bloques transparentes de cristal / memoria (icono de memory card como en la imagen)
+    { x: -40, z: 220, w: 60, d: 30, h: 320, isCrystal: true },
+    { x: 80, z: -20, w: 55, d: 35, h: 360, isCrystal: true }
   ];
 
-  // ~140 Partículas flotantes que ascienden en espiral y niebla etérea
-  const particles = [];
-  const particleCount = Math.min(Math.floor(width / 14), 140);
+  const pillarMeshes = [];
+
+  pillarLayout.forEach((p, idx) => {
+    const geo = new THREE.BoxGeometry(p.w, p.h, p.d);
+
+    let mat;
+    if (p.isCrystal) {
+      // Bloque de cristal semitransparente como las memory cards del PS2
+      mat = new THREE.MeshPhysicalMaterial({
+        color: 0x1a3360,
+        emissive: 0x0a1e3f,
+        roughness: 0.15,
+        metalness: 0.1,
+        transmission: 0.75,
+        transparent: true,
+        opacity: 0.75,
+        ior: 1.45
+      });
+    } else {
+      // Material de columna de piedra digital con cara superior iluminada si corresponde
+      const sideMat = new THREE.MeshStandardMaterial({
+        map: stoneTexture,
+        roughness: 0.55,
+        metalness: 0.2,
+        color: 0x8898b8
+      });
+
+      const topMat = p.topGlow
+        ? new THREE.MeshBasicMaterial({
+          map: topGlowTexture,
+          color: p.emissive || 0xffffff
+        })
+        : new THREE.MeshStandardMaterial({
+          map: stoneTexture,
+          roughness: 0.4,
+          metalness: 0.3,
+          color: 0x485878
+        });
+
+      const bottomMat = new THREE.MeshBasicMaterial({ color: 0x020409 });
+
+      mat = [sideMat, sideMat, topMat, bottomMat, sideMat, sideMat];
+    }
+
+    const mesh = new THREE.Mesh(geo, mat);
+    // Posición Y para que las bases se hundan en el abismo y los topes tengan diferentes alturas
+    const yPos = -p.h / 2 + (p.topGlow ? 120 : (Math.sin(idx * 1.5) * 60 + 50));
+    mesh.position.set(p.x, yPos, p.z);
+    towersGroup.add(mesh);
+
+    // Aristas brillantes características de la geometría de PS2
+    const edgeGeo = new THREE.EdgesGeometry(geo);
+    const edgeMat = new THREE.LineBasicMaterial({
+      color: p.isCrystal ? 0x00f0ff : 0x4f6baf,
+      transparent: true,
+      opacity: p.isCrystal ? 0.7 : 0.35,
+      blending: THREE.AdditiveBlending
+    });
+    const edgeLines = new THREE.LineSegments(edgeGeo, edgeMat);
+    mesh.add(edgeLines);
+
+    pillarMeshes.push({
+      mesh: mesh,
+      baseY: yPos,
+      phase: idx * 0.45
+    });
+  });
+
+  // 8. Rayos de Luz en Órbita (Los míticos destellos rojo, verde, magenta y cian de la imagen de PS2)
+  const lights = [
+    {
+      color: 0xff2244, // Rayo Rojo
+      trailColor: 0xff1133,
+      radiusX: 190,
+      radiusZ: 240,
+      speed: 0.8,
+      heightCenter: 60,
+      heightAmp: 110,
+      phase: 0
+    },
+    {
+      color: 0x00ff88, // Rayo Verde
+      trailColor: 0x00ee77,
+      radiusX: 140,
+      radiusZ: 170,
+      speed: -1.1,
+      heightCenter: 0,
+      heightAmp: 90,
+      phase: 1.8
+    },
+    {
+      color: 0xe024c3, // Rayo Magenta/Púrpura
+      trailColor: 0xc010b0,
+      radiusX: 230,
+      radiusZ: 180,
+      speed: 0.7,
+      heightCenter: 120,
+      heightAmp: 130,
+      phase: 3.4
+    },
+    {
+      color: 0x00e5ff, // Luz Central Cian/Blanca
+      trailColor: 0x00c8ff,
+      radiusX: 90,
+      radiusZ: 110,
+      speed: -0.6,
+      heightCenter: 80,
+      heightAmp: 50,
+      phase: 5.1
+    }
+  ];
+
+  const lightObjects = [];
+
+  lights.forEach((l) => {
+    // Foco de luz puntual que ilumina las caras de las columnas
+    const pLight = new THREE.PointLight(l.color, 2.2, 420);
+    scene.add(pLight);
+
+    // Esfera luminosa (Glow core)
+    const sphereGeo = new THREE.SphereGeometry(3.5, 12, 12);
+    const sphereMat = new THREE.MeshBasicMaterial({
+      color: 0xffffff,
+      blending: THREE.AdditiveBlending
+    });
+    const sphere = new THREE.Mesh(sphereGeo, sphereMat);
+    scene.add(sphere);
+
+    // Estela de luz curvada (Light Trail)
+    const maxTrailPoints = 35;
+    const trailPositions = new Float32Array(maxTrailPoints * 3);
+    const trailGeo = new THREE.BufferGeometry();
+    trailGeo.setAttribute('position', new THREE.BufferAttribute(trailPositions, 3));
+
+    const trailMat = new THREE.LineBasicMaterial({
+      color: l.trailColor,
+      transparent: true,
+      opacity: 0.85,
+      blending: THREE.AdditiveBlending,
+      linewidth: 3
+    });
+    const trailLine = new THREE.Line(trailGeo, trailMat);
+    scene.add(trailLine);
+
+    lightObjects.push({
+      config: l,
+      pointLight: pLight,
+      sphere: sphere,
+      trailLine: trailLine,
+      trailGeo: trailGeo,
+      positionsHistory: []
+    });
+  });
+
+  // 9. Nube de Partículas y Bruma Etérea PS2
+  const particleCount = 260;
+  const particleGeo = new THREE.BufferGeometry();
+  const particlePos = new Float32Array(particleCount * 3);
+  const particleColors = new Float32Array(particleCount * 3);
+
+  const colCyan = new THREE.Color(0x06b6d4);
+  const colPurple = new THREE.Color(0xa855f7);
+  const colWhite = new THREE.Color(0xffffff);
 
   for (let i = 0; i < particleCount; i++) {
-    particles.push({
-      x: (Math.random() - 0.5) * width * 1.5,
-      y: (Math.random() - 0.5) * height * 1.6,
-      z: Math.random() * 800 + 100,
-      size: Math.random() * 2.4 + 0.8,
-      speedY: Math.random() * 0.45 + 0.15,
-      driftAngle: Math.random() * Math.PI * 2,
-      colorType: Math.random() > 0.4 ? 'cyan' : (Math.random() > 0.5 ? 'purple' : 'white'),
-      opacity: Math.random() * 0.7 + 0.2
-    });
+    particlePos[i * 3] = (Math.random() - 0.5) * 800;
+    particlePos[i * 3 + 1] = Math.random() * 500 - 250;
+    particlePos[i * 3 + 2] = (Math.random() - 0.5) * 800;
+
+    const rChoice = Math.random();
+    const c = rChoice < 0.45 ? colCyan : (rChoice < 0.8 ? colPurple : colWhite);
+    particleColors[i * 3] = c.r;
+    particleColors[i * 3 + 1] = c.g;
+    particleColors[i * 3 + 2] = c.b;
   }
 
-  // Proyección perspectiva 3D
-  function project(x, y, z) {
-    const fov = 420;
-    const scale = fov / (z + fov);
-    return {
-      x: width / 2 + x * scale,
-      y: height / 2 + y * scale,
-      scale: scale
-    };
-  }
+  particleGeo.setAttribute('position', new THREE.BufferAttribute(particlePos, 3));
+  particleGeo.setAttribute('color', new THREE.BufferAttribute(particleColors, 3));
 
-  function render() {
-    ctx.clearRect(0, 0, width, height);
+  const particleMat = new THREE.PointsMaterial({
+    size: 4,
+    vertexColors: true,
+    transparent: true,
+    opacity: 0.75,
+    blending: THREE.AdditiveBlending,
+    depthWrite: false
+  });
+  const particleSystem = new THREE.Points(particleGeo, particleMat);
+  scene.add(particleSystem);
 
-    // Inercia de la cámara tipo PS2
-    camera.x += (camera.targetX - camera.x) * 0.05;
-    camera.y += (camera.targetY - camera.y) * 0.05;
-    camera.rotY += 0.0018;
+  // 10. Movimiento Suave de Cámara con Parallax e Interacción del Mouse
+  const mouse = { x: 0, y: 0, targetX: 0, targetY: 0 };
+  window.addEventListener('mousemove', (e) => {
+    mouse.targetX = (e.clientX / window.innerWidth - 0.5) * 2;
+    mouse.targetY = (e.clientY / window.innerHeight - 0.5) * 2;
+  });
 
-    const isDark = document.documentElement.getAttribute('data-theme') !== 'light';
+  window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  });
 
-    // 1. Dibujar Torres de Cristal 3D (PS2 Monoliths)
-    towers.forEach((tower, idx) => {
-      // Oscilación suave en altura y rotación con la fase de onda
-      const bob = Math.sin(camera.wavePhase + idx * 0.9) * 20;
-      const currentH = tower.baseH + Math.sin(camera.wavePhase * 1.5 + idx) * 15;
+  // 11. Bucle de Renderizado Principal a 60 FPS
+  let clock = new THREE.Clock();
 
-      // Rotación circular en torno al eje Y
-      const cosR = Math.cos(camera.rotY * 0.6 + idx * 0.85);
-      const sinR = Math.sin(camera.rotY * 0.6 + idx * 0.85);
-      const worldX = tower.x * cosR - tower.z * sinR;
-      const worldZ = tower.x * sinR + tower.z * cosR + 380;
-      const worldY = 90 + bob + camera.y * 300;
+  function animate() {
+    requestAnimationFrame(animate);
 
-      if (worldZ <= 20) return;
+    const elapsedTime = clock.getElapsedTime();
 
-      const pBottom = project(worldX + camera.x * 200, worldY, worldZ);
-      const pTop = project(worldX + camera.x * 200, worldY - currentH, worldZ);
-      const halfW = (tower.w * pBottom.scale) / 2;
+    // Suavizado de mouse
+    mouse.x += (mouse.targetX - mouse.x) * 0.04;
+    mouse.y += (mouse.targetY - mouse.y) * 0.04;
 
-      // Colores de cristal PS2 (Cyan / Púrpura semitransparente)
-      const grad = ctx.createLinearGradient(pTop.x, pTop.y, pBottom.x, pBottom.y);
-      if (isDark) {
-        grad.addColorStop(0, 'rgba(6, 182, 212, 0.22)');
-        grad.addColorStop(0.5, 'rgba(99, 102, 241, 0.16)');
-        grad.addColorStop(1, 'rgba(168, 85, 247, 0.04)');
-      } else {
-        grad.addColorStop(0, 'rgba(79, 70, 229, 0.16)');
-        grad.addColorStop(1, 'rgba(6, 182, 212, 0.04)');
-      }
+    // Órbita lenta y majestuosa de la cámara alrededor de las torres
+    const camAngle = elapsedTime * 0.08 + mouse.x * 0.45;
+    const camDist = 520 + mouse.y * 60;
+    camera.position.x = Math.sin(camAngle) * camDist;
+    camera.position.z = Math.cos(camAngle) * camDist;
+    camera.position.y = 440 - mouse.y * 120;
+    camera.lookAt(0, -60, 0);
 
-      ctx.save();
-      // Cara de la columna
-      ctx.beginPath();
-      ctx.rect(pTop.x - halfW, pTop.y, halfW * 2, pBottom.y - pTop.y);
-      ctx.fillStyle = grad;
-      ctx.fill();
-
-      // Borde brillante de cristal
-      ctx.strokeStyle = isDark ? 'rgba(6, 182, 212, 0.45)' : 'rgba(99, 102, 241, 0.35)';
-      ctx.lineWidth = Math.max(1, 1.4 * pBottom.scale);
-      ctx.stroke();
-
-      // Línea central de arista de cristal
-      ctx.beginPath();
-      ctx.moveTo(pTop.x, pTop.y);
-      ctx.lineTo(pBottom.x, pBottom.y);
-      ctx.strokeStyle = isDark ? 'rgba(168, 85, 247, 0.4)' : 'rgba(99, 102, 241, 0.25)';
-      ctx.stroke();
-      ctx.restore();
+    // Oscilación suave de los monolitos
+    pillarMeshes.forEach((item) => {
+      item.mesh.position.y = item.baseY + Math.sin(elapsedTime * 0.7 + item.phase) * 8;
     });
 
-    // 2. Dibujar Nube de Partículas PS2 (Ethereal Dust Streams)
-    particles.forEach(p => {
-      p.y -= p.speedY;
-      p.driftAngle += 0.02;
-      const driftX = Math.sin(p.driftAngle + camera.wavePhase) * 0.8;
+    // Movimiento de los rayos de luz en 3D
+    lightObjects.forEach((item) => {
+      const c = item.config;
+      const angle = elapsedTime * c.speed + c.phase;
 
-      if (p.y < -height / 1.5) {
-        p.y = height / 1.5;
-        p.x = (Math.random() - 0.5) * width * 1.5;
+      const lx = Math.cos(angle) * c.radiusX;
+      const lz = Math.sin(angle) * c.radiusZ;
+      const ly = c.heightCenter + Math.sin(angle * 1.6) * c.heightAmp;
+
+      item.pointLight.position.set(lx, ly, lz);
+      item.sphere.position.set(lx, ly, lz);
+
+      // Actualizar historial de estela
+      item.positionsHistory.unshift({ x: lx, y: ly, z: lz });
+      if (item.positionsHistory.length > 35) {
+        item.positionsHistory.pop();
       }
 
-      const pProj = project(p.x + driftX * 40 + camera.x * 250, p.y + camera.y * 200, p.z);
-
-      if (pProj.x > 0 && pProj.x < width && pProj.y > 0 && pProj.y < height) {
-        ctx.beginPath();
-        const rad = Math.max(0.6, p.size * pProj.scale);
-        ctx.arc(pProj.x, pProj.y, rad, 0, Math.PI * 2);
-
-        let colorStr = '255, 255, 255';
-        if (p.colorType === 'cyan') colorStr = '6, 182, 212';
-        else if (p.colorType === 'purple') colorStr = '168, 85, 247';
-
-        const alpha = p.opacity * Math.min(1, pProj.scale * 1.8);
-        ctx.fillStyle = `rgba(${colorStr}, ${alpha})`;
-        ctx.fill();
-
-        // Resplandor difuso para partículas más cercanas
-        if (p.size > 1.8 && isDark) {
-          ctx.beginPath();
-          ctx.arc(pProj.x, pProj.y, rad * 2.8, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(${colorStr}, ${alpha * 0.25})`;
-          ctx.fill();
+      const posAttr = item.trailGeo.attributes.position;
+      for (let i = 0; i < 35; i++) {
+        if (i < item.positionsHistory.length) {
+          const p = item.positionsHistory[i];
+          posAttr.setXYZ(i, p.x, p.y, p.z);
+        } else if (item.positionsHistory.length > 0) {
+          const last = item.positionsHistory[item.positionsHistory.length - 1];
+          posAttr.setXYZ(i, last.x, last.y, last.z);
         }
       }
+      posAttr.needsUpdate = true;
     });
 
-    requestAnimationFrame(render);
+    // Ascenso de partículas cósmicas
+    const positions = particleSystem.geometry.attributes.position.array;
+    for (let i = 0; i < particleCount; i++) {
+      positions[i * 3 + 1] += 0.45; // Subir lentamente
+      if (positions[i * 3 + 1] > 300) {
+        positions[i * 3 + 1] = -250;
+      }
+    }
+    particleSystem.geometry.attributes.position.needsUpdate = true;
+
+    // Adaptación a modo claro u oscuro
+    const isDark = document.documentElement.getAttribute('data-theme') !== 'light';
+    scene.fog.color.setHex(isDark ? fogColorDark : fogColorLight);
+
+    renderer.render(scene, camera);
   }
 
-  render();
+  animate();
 }
 
 /* ===================================================================
@@ -531,11 +787,13 @@ function initTypingEffect() {
   if (!typingEl) return;
 
   const phrases = [
-    'la Ingeniería de Sistemas',
+    'la vida de puros binarios',
+    'crear mundos con la lógica pura',
     'crear soluciones con impacto',
-    'el desarrollo de software y bases de datos',
+    'el desarrollo de software y BD',
     'la tecnología, algoritmos e innovación',
-    'aprender y superarme día a día'
+    'aprender y superarme día a día',
+    'la estructura que compone el programa'
   ];
 
   let phraseIndex = 0;
@@ -719,7 +977,8 @@ function initQuoteRotator() {
     '"La constancia y la disciplina siempre superan a la motivación pasajera."',
     '"No cuentes los días, haz que cada día cuente."',
     '"Sé el arquitecto de tus propios sueños y no el espectador de los ajenos."',
-    '"Cada error superado es una lección ganada hacia la maestría."'
+    '"Cada error superado es una lección ganada hacia la maestría."',
+    '"La frase más peligrosa del mundo es: Siempre se ha hecho así."'
   ];
 
   let currentIdx = 0;
@@ -740,7 +999,7 @@ function initQuoteRotator() {
 /* ===================================================================
    9. LIGHTBOX PARA FOTOS DE GALERÍA
    =================================================================== */
-window.openLightbox = function(imgSrc, title, desc) {
+window.openLightbox = function (imgSrc, title, desc) {
   const modal = document.getElementById('lightbox-modal');
   const modalImg = document.getElementById('lightbox-img');
   const modalTitle = document.getElementById('lightbox-title');
@@ -756,7 +1015,7 @@ window.openLightbox = function(imgSrc, title, desc) {
   document.body.style.overflow = 'hidden';
 };
 
-window.closeLightbox = function(e) {
+window.closeLightbox = function (e) {
   const modal = document.getElementById('lightbox-modal');
   if (!modal) return;
   modal.classList.remove('active');
